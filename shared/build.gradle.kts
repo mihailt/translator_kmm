@@ -90,3 +90,10 @@ android {
         targetSdk = 33
     }
 }
+
+sqldelight {
+    database("TranslateDatabase") {
+        packageName = "com.tumkins.translator_kmm.database"
+        sourceFolders = listOf("sqldelight")
+    }
+}
