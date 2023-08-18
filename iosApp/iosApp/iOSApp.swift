@@ -1,11 +1,23 @@
 import SwiftUI
+import shared
 
 @main
 struct iOSApp: App {
-	var body: some Scene {
+
+    private var appModule: any AppModule = AppModuleImpl(parser: IOSVoiceToTextParser())
+
+    #if DEBUG
+    init() {
+        if CommandLine.arguments.contains("isUiTesting") {
+            appModule = TestAppModule()
+        }
+    }
+    #endif
+
+    var body: some Scene {
 		WindowGroup {
             NavigationView {
-                ContentView()
+                ContentView(appModule: appModule)
             }
 		}
 	}
